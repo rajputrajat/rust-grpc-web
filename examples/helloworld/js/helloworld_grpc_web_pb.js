@@ -21,7 +21,7 @@ proto.helloworld = require('./helloworld_pb.js');
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -29,7 +29,7 @@ proto.helloworld = require('./helloworld_pb.js');
 proto.helloworld.GreeterClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -47,7 +47,7 @@ proto.helloworld.GreeterClient =
 /**
  * @param {string} hostname
  * @param {?Object} credentials
- * @param {?Object} options
+ * @param {?grpc.web.ClientOptions} options
  * @constructor
  * @struct
  * @final
@@ -55,7 +55,7 @@ proto.helloworld.GreeterClient =
 proto.helloworld.GreeterPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -93,30 +93,11 @@ const methodDescriptor_Greeter_SayHello = new grpc.web.MethodDescriptor(
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.helloworld.HelloRequest,
- *   !proto.helloworld.HelloReply>}
- */
-const methodInfo_Greeter_SayHello = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.helloworld.HelloReply,
-  /**
-   * @param {!proto.helloworld.HelloRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.helloworld.HelloReply.deserializeBinary
-);
-
-
-/**
  * @param {!proto.helloworld.HelloRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.helloworld.HelloReply)}
+ * @param {function(?grpc.web.RpcError, ?proto.helloworld.HelloReply)}
  *     callback The callback function(error, response)
  * @return {!grpc.web.ClientReadableStream<!proto.helloworld.HelloReply>|undefined}
  *     The XHR Node Readable Stream
@@ -135,7 +116,7 @@ proto.helloworld.GreeterClient.prototype.sayHello =
 /**
  * @param {!proto.helloworld.HelloRequest} request The
  *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.helloworld.HelloReply>}
  *     Promise that resolves to the response
@@ -173,27 +154,8 @@ const methodDescriptor_Greeter_SayRepeatHello = new grpc.web.MethodDescriptor(
 
 
 /**
- * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.helloworld.RepeatHelloRequest,
- *   !proto.helloworld.HelloReply>}
- */
-const methodInfo_Greeter_SayRepeatHello = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.helloworld.HelloReply,
-  /**
-   * @param {!proto.helloworld.RepeatHelloRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.helloworld.HelloReply.deserializeBinary
-);
-
-
-/**
  * @param {!proto.helloworld.RepeatHelloRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.helloworld.HelloReply>}
  *     The XHR Node Readable Stream
@@ -210,7 +172,7 @@ proto.helloworld.GreeterClient.prototype.sayRepeatHello =
 
 /**
  * @param {!proto.helloworld.RepeatHelloRequest} request The request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!grpc.web.ClientReadableStream<!proto.helloworld.HelloReply>}
  *     The XHR Node Readable Stream

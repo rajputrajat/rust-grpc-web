@@ -14,6 +14,6 @@ grpc-web = { path = "../grpc-web", package = "rust-grpc-web" }
 hyper = "0.14.4"
 futures = "0.3"
 tokio = { version = "1.0", features = ["rt-multi-thread", "time", "fs", "macros", "net"] }
-clap = "3.0.0-beta.2"
+clap = { version = "3.1.10", features = [ "derive" ] }
 env_logger = "0.7.1"
 log = "0.4.0"

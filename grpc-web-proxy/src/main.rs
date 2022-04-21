@@ -1,4 +1,4 @@
-use clap::Clap;
+use clap::Parser;
 use grpc_web::Error;
 use hyper::service::{make_service_fn, service_fn};
 use hyper::{http::HeaderValue, Server};
@@ -9,7 +9,7 @@ use proxy::{HttpConfig, Proxy};
 mod proxy;
 
 /// Simple gRPC-Web proxy, built in Rust.
-#[derive(Clap)]
+#[derive(Parser)]
 #[clap(version = "0.1", author = "Gregory Hill <gregorydhill@outlook.com>")]
 struct Opts {
     /// Address to forward grpc requests to.
